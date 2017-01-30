@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import * as catActions from '../../actions/catActions.js';
+import CatList from './CatList';
 
 @connect(state => ({
   // State from global state goes here
@@ -12,9 +13,13 @@ import * as catActions from '../../actions/catActions.js';
 class CatPage extends Component {
 
   render() {
-    console.log('cats---->', this.props.cats)
-    return(
-      <h1>test</h1>
+    return (
+      <div className="col-md-12">
+        <h1>Cats</h1>
+        <div className="col-md-4">
+          <CatList cats={this.props.cats} />
+        </div>
+      </div>
     );
   }
 }
