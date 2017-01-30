@@ -10,22 +10,26 @@ import CatList from './CatList';
   // Actions will be recieved here
 
 })
-class CatPage extends Component {
+class CatsPage extends Component {
+  const { cats, children } = this.props;
 
   render() {
     return (
       <div className="col-md-12">
         <h1>Cats</h1>
         <div className="col-md-4">
-          <CatList cats={this.props.cats} />
+          <CatList cats={cats} />
+        </div>
+        <div className="col-md-8">
+          {children}
         </div>
       </div>
     );
   }
 }
 
-CatPage.propTypes = {
+CatsPage.propTypes = {
   cats: PropTypes.array
 }
 
-export default CatPage;
+export default CatsPage;

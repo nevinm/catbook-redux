@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Header from './common/Header';
-import CatPage from './cats/CatPage';
+import CatsPage from './cats/CatsPage';
 
 export default class App extends Component {
 
@@ -8,7 +8,7 @@ export default class App extends Component {
     return (
       <div className="container-fluid">
        <Header />
-       <CatPage />
+       <CatsPage />
        {this.props.children}
      </div>
     );
