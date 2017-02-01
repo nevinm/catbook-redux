@@ -1,22 +1,44 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 
-const { object } = PropTypes;
+const { array, object } = PropTypes;
 
+@connect(state => ({
+  cats: state.cats,
+}), {})
 class CatPage extends Component {
   static propTypes = {
-    cat: object.isRequired,
+    cats: array,
+    params: object,
   };
 
+  static defaultProps = {
+    cats: [],
+    params: {},
+  };
+
+  filterCat = (id) => {
+    const { cats } = this.props;
+    return cats.find(cat => (cat.id === JSON.parse(id)));
+  }
+
+  catTemplate(cat) {
+      return (
+        <div>
+          <h1>{cat.title}</h1>
+          <p>User Id: {cat.userId}</p>
+          <p>Body: {cat.body}</p>
+        </div>
+      );
+  }
+
   render() {
-    const { cat } = this.props;
-    console.log('cat-->', cat);
+    const { id } = this.props.params;
+    const cat = this.filterCat(id);
+
     return (
      <div className="col-md-8 col-md-offset-2">
-       <h1>{cat.name}</h1>
-       <p>breed: {cat.breed}</p>
-       <p>weight: {cat.weight}</p>
-       <p>temperament: {cat.temperament}</p>
+       {cat && this.catTemplate(cat)}
      </div>
     );
   }

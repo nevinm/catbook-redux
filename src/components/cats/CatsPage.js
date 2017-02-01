@@ -14,6 +14,7 @@ import CatPage from './CatPage';
 class CatsPage extends Component {
 
   render() {
+    // Children will also include the nested component - CatPage from routes.js
     const { cats, children } = this.props;
 
     return (
