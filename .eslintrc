@@ -7,11 +7,25 @@
   "plugins": [
     "react"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      modules": true,
+      "jsx": true,
+      "forOf": true,
+      "blockBindings": true,
+      "arrowFunctions": true,
+      "classes": true,
+      "defaultParams": true,
+      "destructuring": true,
+      "generators": true,
+      "restParams": true,
+      "spread": true,
+      "superInFunctions": true,
+      "templateStrings": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "env": {

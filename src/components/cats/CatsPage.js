@@ -11,9 +11,9 @@ import CatList from './CatList';
 
 })
 class CatsPage extends Component {
-  const { cats, children } = this.props;
 
   render() {
+    const { cats, children } = this.props;
     return (
       <div className="col-md-12">
         <h1>Cats</h1>
