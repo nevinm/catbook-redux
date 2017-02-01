@@ -5,7 +5,7 @@ const { object } = PropTypes;
 
 class CatPage extends Component {
   static propTypes = {
-    cat: object,
+    cat: object.isRequired,
   };
 
   render() {

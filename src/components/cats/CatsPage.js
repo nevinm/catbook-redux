@@ -32,7 +32,7 @@ class CatsPage extends Component {
 
 CatsPage.propTypes = {
   cats: PropTypes.array,
-  children: PropTypes.nodes,
+  children: PropTypes.node,
 }
 
 export default CatsPage;

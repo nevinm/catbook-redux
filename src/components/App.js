@@ -8,7 +8,6 @@ export default class App extends Component {
     return (
       <div className="container-fluid">
        <Header />
-       <CatsPage />
        {this.props.children}
      </div>
     );
@@ -16,5 +15,5 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
 };
