@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import * as catActions from '../../actions/catActions.js';
 import CatList from './CatList';
+import CatPage from './CatPage';
 
 @connect(state => ({
   // State from global state goes here
@@ -14,6 +15,7 @@ class CatsPage extends Component {
 
   render() {
     const { cats, children } = this.props;
+
     return (
       <div className="col-md-12">
         <h1>Cats</h1>
@@ -29,7 +31,8 @@ class CatsPage extends Component {
 }
 
 CatsPage.propTypes = {
-  cats: PropTypes.array
+  cats: PropTypes.array,
+  children: PropTypes.nodes,
 }
 
 export default CatsPage;

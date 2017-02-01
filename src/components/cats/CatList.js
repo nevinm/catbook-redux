@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from "react";
+import React, { PropTypes, Component } from 'react';
 
 const CatList = ({ cats }) => {
   const cat = cats.map(cat => <li className="list-group-item" key={cat.id}>{cat.title}</li>);
