@@ -40,8 +40,16 @@ export default {
   module: {
     loaders: [
       { test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader']},
-      { test: /\.css$/, include: path.join(__dirname, 'src'),
-        loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract([
+          'css-loader?' + JSON.stringify(cssLoaderQuery),
+          'sass-loader?' + JSON.stringify(sassLoaderQuery),
+        ]),
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
       { test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},

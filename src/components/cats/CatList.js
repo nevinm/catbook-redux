@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
-import styles from './styles.css';
+import styles from './catStyles.scss';
 
 const CatList = ({ cats }) => {
   const cat = cats.map(cat =>
