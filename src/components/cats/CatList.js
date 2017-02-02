@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
+import styles from './styles.css';
 
 const CatList = ({ cats }) => {
   const cat = cats.map(cat =>
@@ -11,7 +12,7 @@ const CatList = ({ cats }) => {
   );
 
   return (
-    <ul className="list-group">
+    <ul className={styles['list-group']}>
       {cat}
     </ul>
   );
