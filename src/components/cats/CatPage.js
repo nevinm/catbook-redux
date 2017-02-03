@@ -27,17 +27,17 @@ class CatPage extends Component {
     return cats.find(cat => (cat.id === JSON.parse(id)));
   }
 
-  catTemplate(cat) {
-      return (
-        <div>
-          <h1>{cat.title}</h1>
-          <p>Description: {cat.description}</p>
-          <p>Body: {cat.body}</p>
-        </div>
-      );
+  catDisplayTemplate(cat) {
+    return (
+      <div>
+        <h1>{cat.title}</h1>
+        <p>Description: {cat.description}</p>
+        <p>Body: {cat.body}</p>
+      </div>
+    );
   }
 
-  startEditing() {
+  startEditing = () => {
     this.setState({ isEditing: true });
   }
 
@@ -47,14 +47,13 @@ class CatPage extends Component {
     const cat = this.filterCat(id);
 
     if(isEditing) {
-      // Return the catform component here.
-      return true;
+      return <CatForm />;
     }
 
     return (
      <div className="col-md-8 col-md-offset-2">
-       {cat && this.catTemplate(cat)}
-       <button onClick={this.startEditing} className="btn btn-warning">EDIT</button>
+       {cat && this.catDisplayTemplate(cat)}
+       {!isEditing && <button onClick={this.startEditing} className="btn btn-warning">EDIT</button>}
      </div>
     );
   }
