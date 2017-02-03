@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import CatForm from './CatForm';
 
 const { array, object } = PropTypes;
 
@@ -17,6 +18,10 @@ class CatPage extends Component {
     params: {},
   };
 
+  state = {
+    isEditing: false,
+  };
+
   filterCat = (id) => {
     const { cats } = this.props;
     return cats.find(cat => (cat.id === JSON.parse(id)));
@@ -26,19 +31,30 @@ class CatPage extends Component {
       return (
         <div>
           <h1>{cat.title}</h1>
-          <p>User Id: {cat.userId}</p>
+          <p>Description: {cat.description}</p>
           <p>Body: {cat.body}</p>
         </div>
       );
   }
 
+  startEditing() {
+    this.setState({ isEditing: true });
+  }
+
   render() {
     const { id } = this.props.params;
+    const { isEditing } = this.state;
     const cat = this.filterCat(id);
+
+    if(isEditing) {
+      // Return the catform component here.
+      return true;
+    }
 
     return (
      <div className="col-md-8 col-md-offset-2">
        {cat && this.catTemplate(cat)}
+       <button onClick={this.startEditing} className="btn btn-warning">EDIT</button>
      </div>
     );
   }
