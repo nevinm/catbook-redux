@@ -14,6 +14,10 @@ export default function(state = initialState.cats, action) {
       return cats;
     }
 
+    case types.UPDATE_CATS_SUCCESS:
+      debugger;
+      break;
+
     default:
       return state;
   }

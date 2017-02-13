@@ -19,6 +19,18 @@ class CatApi {
     .then(response => response.json())
     .catch(error => error);
   }
+
+  static updateCat(data) {
+    return fetch('http://localhost:3000/posts/', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application-json',
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .catch(error => error());
+  }
 }
 
 export default CatApi;

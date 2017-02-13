@@ -20,6 +20,19 @@ export function loadCats() {
   };
 }
 
+export function updateCat(cat) {
+  return function (dispatch) {
+    return catApi.updateCat(cat).then(cats => {
+      debugger;
+      console.log(cats);
+    });
+  };
+}
+
+export function updateCatsAction(cat) {
+  return { type: types.UPDATE_CATS_SUCCESS, cat };
+}
+
 export function addCatsAction(cat) {
   return { type: types.ADD_CATS_SUCCESS, cat };
 }

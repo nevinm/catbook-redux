@@ -1,13 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import * as catActions from '../../actions/catActions.js';
 import connect from 'react-redux';
 
 const { func, object, bool } = PropTypes;
 
+@connect(state => ({
+
+}), {
+  updateCat: catActions.updateCat,
+})
 class CatForm extends Component {
   static propTypes = {
     cat: object,
     addCat: func,
     cancelFunc: func,
+    saveFunc: func,
+    updateFunc: func,
     isEdit: bool, // Adding a new cat - !isEdit
   };
 
@@ -18,7 +26,7 @@ class CatForm extends Component {
       body: '',
     },
     isEdit: true,
-  }
+  };
 
   state = {
     cat: {
@@ -26,7 +34,7 @@ class CatForm extends Component {
       description: this.props.cat.description,
       body: this.props.cat.body,
     }
-  }
+  };
 
   handleChange = (key) => (event) => {
     const { cat } = this.state;
@@ -39,8 +47,12 @@ class CatForm extends Component {
     this.props.addCat(event, this.state.cat);
   }
 
+  updateFunc = () => {
+
+  }
+
   render() {
-    const { cancelFunc, isEdit } = this.props;
+    const { cancelFunc, isEdit, saveFunc, updateFunc } = this.props;
     const { cat } = this.state;
 
     return (
@@ -75,8 +87,8 @@ class CatForm extends Component {
             id="body"
           />
         </div>
-        {isEdit && <button type="submit" className="btn btn-success">Save</button>}
-        {!isEdit && <button type="submit" className="btn btn-success">Submit</button>}
+        {isEdit && <button type="submit" onClick={updateFunc} className="btn btn-success ">Save</button>}
+        {!isEdit && <button type="submit" onClick={saveFunc}  className="btn btn-success">Submit</button>}
         <button type="button" onClick={() => cancelFunc()} className="btn btn-default">Cancel</button>
       </form>
     );

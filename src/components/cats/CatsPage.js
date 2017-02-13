@@ -34,6 +34,6 @@ class CatsPage extends Component {
 CatsPage.propTypes = {
   cats: PropTypes.array,
   children: PropTypes.node,
-}
+};
 
 export default CatsPage;
