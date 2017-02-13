@@ -9,7 +9,8 @@
     "start": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node tools/srcServer.js",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
-    "lint:watch": "npm run lint -- --watch"
+    "lint:watch": "npm run lint -- --watch",
+    "start-server": "cd json-server && json-server --watch db.json"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

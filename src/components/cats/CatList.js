@@ -22,4 +22,8 @@ CatList.propTypes = {
   cats: PropTypes.array,
 };
 
+CatList.defaultProps = {
+  cats: [],
+};
+
 export default CatList;
