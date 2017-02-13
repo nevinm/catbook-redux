@@ -41,13 +41,21 @@ class CatPage extends Component {
     this.setState({ isEditing: true });
   }
 
+  addCat(event, cat) {
+    console.log(cat);
+  }
+
+  cancelEditing = () => {
+    this.setState({ isEditing: false });
+  }
+
   render() {
     const { id } = this.props.params;
     const { isEditing } = this.state;
     const cat = this.filterCat(id);
 
     if(isEditing) {
-      return <CatForm />;
+      return <CatForm addCat={this.addCat} cancelCat={this.cancelEditing} />;
     }
 
     return (

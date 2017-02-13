@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import cats from './catReducer';
 
 const rootReducer = combineReducers({
-  cats
+  cats,
 });
 
 export default rootReducer;

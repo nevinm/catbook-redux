@@ -1,1 +1,2 @@
 export const LOAD_CATS_SUCCESS = 'LOAD_CATS_SUCCESS';
+export const ADD_CATS_SUCCESS = 'ADD_CATS_SUCCESS';

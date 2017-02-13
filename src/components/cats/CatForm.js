@@ -6,6 +6,7 @@ const { func } = PropTypes;
 class CatForm extends Component {
   static propTypes = {
     addCat: func,
+    cancelFunc: func,
   };
 
   state = {
@@ -22,11 +23,17 @@ class CatForm extends Component {
     this.setState({ cat: cat });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.addCat(event, this.state.cat);
+  }
+
   render() {
-    const { addCat } = this.props;
+    const { cancelFunc } = this.props;
+    const { cat } = this.state;
 
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
@@ -41,7 +48,7 @@ class CatForm extends Component {
           <label htmlFor="description">Description:</label>
           <input
             value={this.state.description}
-            onChange={this.handleChange}
+            onChange={this.handleChange('description')}
             type="text"
             className="form-control"
             id="description"
@@ -51,13 +58,14 @@ class CatForm extends Component {
           <label htmlFor="body">Body:</label>
           <input
             value={this.state.body}
-            onChange={this.handleChange}
+            onChange={this.handleChange('body')}
             type="text"
             className="form-control"
             id="body"
           />
         </div>
-        <button type="submit" onClick={addCat} className="btn btn-success">Submit</button>
+        <button type="submit" className="btn btn-success">Submit</button>
+        <button type="button" onClick={cancelFunc} className="btn btn-default">Cancel</button>
       </form>
     );
   }

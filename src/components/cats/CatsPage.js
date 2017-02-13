@@ -19,7 +19,7 @@ class CatsPage extends Component {
 
     return (
       <div className="col-md-12">
-        <h1>Cats</h1>
+        <h1>Users</h1>
         <div className="col-md-4">
           <CatList cats={cats} />
         </div>

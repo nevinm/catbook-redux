@@ -1,4 +1,4 @@
 export default {
   cats: [],
-  hobbies: []
+  hobbies: [],
 };
