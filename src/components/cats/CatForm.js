@@ -1,19 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 import connect from 'react-redux';
 
-const { func } = PropTypes;
+const { func, object, bool } = PropTypes;
 
 class CatForm extends Component {
   static propTypes = {
+    cat: object,
     addCat: func,
     cancelFunc: func,
+    isEdit: bool, // Adding a new cat - !isEdit
   };
 
-  state = {
+  static defaultProps = {
     cat: {
       title: '',
       description: '',
       body: '',
+    },
+    isEdit: true,
+  }
+
+  state = {
+    cat: {
+      title: this.props.cat.title,
+      description: this.props.cat.description,
+      body: this.props.cat.body,
     }
   }
 
@@ -29,7 +40,7 @@ class CatForm extends Component {
   }
 
   render() {
-    const { cancelFunc } = this.props;
+    const { cancelFunc, isEdit } = this.props;
     const { cat } = this.state;
 
     return (
@@ -37,7 +48,7 @@ class CatForm extends Component {
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
-            value={this.state.title}
+            value={cat.title}
             onChange={this.handleChange('title')}
             type="text"
             className="form-control"
@@ -47,7 +58,7 @@ class CatForm extends Component {
         <div className="form-group">
           <label htmlFor="description">Description:</label>
           <input
-            value={this.state.description}
+            value={cat.description}
             onChange={this.handleChange('description')}
             type="text"
             className="form-control"
@@ -57,15 +68,16 @@ class CatForm extends Component {
         <div className="form-group">
           <label htmlFor="body">Body:</label>
           <input
-            value={this.state.body}
+            value={cat.body}
             onChange={this.handleChange('body')}
             type="text"
             className="form-control"
             id="body"
           />
         </div>
-        <button type="submit" className="btn btn-success">Submit</button>
-        <button type="button" onClick={cancelFunc} className="btn btn-default">Cancel</button>
+        {isEdit && <button type="submit" className="btn btn-success">Save</button>}
+        {!isEdit && <button type="submit" className="btn btn-success">Submit</button>}
+        <button type="button" onClick={() => cancelFunc()} className="btn btn-default">Cancel</button>
       </form>
     );
   }

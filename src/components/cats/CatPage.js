@@ -24,6 +24,7 @@ class CatPage extends Component {
 
   state = {
     isEditing: false,
+    showNewAdditionForm: false,
   };
 
   filterCat = (id) => {
@@ -41,31 +42,34 @@ class CatPage extends Component {
     );
   }
 
-  startEditing = () => {
-    this.setState({ isEditing: true });
+  toggleForm = (key) => {
+    this.setState({
+      [key]: !this.state[key],
+     });
   }
 
   addCat = (event, cat) => {
     this.props.addCat(cat);
   }
 
-  cancelEditing = () => {
-    this.setState({ isEditing: false });
-  }
-
   render() {
     const { id } = this.props.params;
-    const { isEditing } = this.state;
+    const { isEditing, showNewAdditionForm } = this.state;
     const cat = this.filterCat(id);
 
+    if(showNewAdditionForm) {
+      return <CatForm isEdit={showNewAdditionForm} addCat={this.addCat} cancelFunc={() => this.toggleForm('showNewAdditionForm')} />;
+    }
+
     if(isEditing) {
-      return <CatForm addCat={this.addCat} cancelCat={this.cancelEditing} />;
+      return <CatForm isEdit={isEditing} cat={cat} addCat={this.addCat} cancelFunc={() => this.toggleForm('isEditing')} />;
     }
 
     return (
      <div className="col-md-8 col-md-offset-2">
        {cat && this.catDisplayTemplate(cat)}
-       {!isEditing && <button onClick={this.startEditing} className="btn btn-warning">EDIT</button>}
+       {!isEditing && <button onClick={() => this.toggleForm('isEditing')} className="btn btn-warning">EDIT</button>}
+       {!showNewAdditionForm && <button onClick={() => this.toggleForm('showNewAdditionForm')} className="btn btn-success">Add new</button>}
      </div>
     );
   }
