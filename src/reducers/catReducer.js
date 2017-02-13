@@ -6,6 +6,14 @@ export default function(state = initialState.cats, action) {
     case types.LOAD_CATS_SUCCESS:
       return action.cats;
 
+    case types.ADD_CATS_SUCCESS: {
+      const cats = [
+        ...state,
+        action.cat,
+      ];
+      return cats;
+    }
+
     default:
       return state;
   }

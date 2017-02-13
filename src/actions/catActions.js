@@ -1,13 +1,10 @@
 import catApi from '../api/catApi';
 import * as types from './actionTypes';
 
-export function addCat() {
+export function addCat(cat) {
   return function (dispatch) {
-    return catApi.addCat().then(cats => {
-      console.log('ADDDED->', cats);
-
-      // dispatch(addCatsSuccess(cats))
-      // .then(dispatch(loadCatsSuccess(cats)));
+    return catApi.addCat(cat).then(cats => {
+      dispatch(addCatsAction(cats));
     });
   };
 }
@@ -23,8 +20,8 @@ export function loadCats() {
   };
 }
 
-export function addCatsSuccess(cats) {
-  return { type: types.ADD_CATS_SUCCESS, cats };
+export function addCatsAction(cat) {
+  return { type: types.ADD_CATS_SUCCESS, cat };
 }
 
 export function loadCatsSuccess(cats) {

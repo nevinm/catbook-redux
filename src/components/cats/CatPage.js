@@ -1,16 +1,20 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import CatForm from './CatForm';
+import * as catActions from '../../actions/catActions';
 
-const { array, object } = PropTypes;
+const { array, object, func } = PropTypes;
 
 @connect(state => ({
   cats: state.cats,
-}), {})
+}), {
+  addCat: catActions.addCat,
+})
 class CatPage extends Component {
   static propTypes = {
     cats: array,
     params: object,
+    addCat: func,
   };
 
   static defaultProps = {
@@ -41,8 +45,8 @@ class CatPage extends Component {
     this.setState({ isEditing: true });
   }
 
-  addCat(event, cat) {
-    console.log(cat);
+  addCat = (event, cat) => {
+    this.props.addCat(cat);
   }
 
   cancelEditing = () => {
